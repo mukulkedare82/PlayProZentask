@@ -18,7 +18,14 @@ public class User extends Model {
 								this.password = password;
 				}
 
+				//finder
 				public static Finder<String,User> find = new Finder<String,User>(
 												String.class, User.class
 												); 
+
+				//method to authenticate users
+				public static User authenticate(String email, String password) {
+								return find.where().eq("email", email)
+												.eq("password", password).findUnique();
+				}
 }
