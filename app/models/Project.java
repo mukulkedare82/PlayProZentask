@@ -3,6 +3,8 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 import play.db.ebean.*;
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Model;
 
 @Entity
 public class Project extends Model {
@@ -25,7 +27,7 @@ public class Project extends Model {
 				public static Project create(String name, String folder, String owner) {
 								Project project = new Project(name, folder, User.find.ref(owner));
 								project.save();
-								project.saveManyToManyAssociations("members");
+								Ebean.saveManyToManyAssociations(project, "members");
 								return project;
 				}
 
