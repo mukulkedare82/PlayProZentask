@@ -11,6 +11,7 @@ public class ModelsTest extends WithApplication {
 				@Before
 				public void setUp() {
 								start(fakeApplication(inMemoryDatabase()));
+								Ebean.save((List) Yaml.load("test-data.yml"));
 				}
 
 				@Test
@@ -66,7 +67,6 @@ public class ModelsTest extends WithApplication {
 				}
 				@Test
 				public void fullTest() {
-								Ebean.save((List) Yaml.load("test-data.yml"));
 
 								// Count things
 								assertEquals(3, User.find.findRowCount());
